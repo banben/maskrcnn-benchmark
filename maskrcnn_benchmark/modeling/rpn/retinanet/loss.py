@@ -10,6 +10,7 @@ from ..utils import concat_box_prediction_layers
 
 from maskrcnn_benchmark.layers import smooth_l1_loss
 from maskrcnn_benchmark.layers import SigmoidFocalLoss
+from maskrcnn_benchmark.layers import SigmoidDRLoss
 from maskrcnn_benchmark.modeling.matcher import Matcher
 from maskrcnn_benchmark.modeling.utils import cat
 from maskrcnn_benchmark.structures.boxlist_ops import boxlist_iou
@@ -91,9 +92,9 @@ def make_retinanet_loss_evaluator(cfg, box_coder):
         cfg.MODEL.RETINANET.BG_IOU_THRESHOLD,
         allow_low_quality_matches=True,
     )
-    sigmoid_focal_loss = SigmoidFocalLoss(
-        cfg.MODEL.RETINANET.LOSS_GAMMA,
-        cfg.MODEL.RETINANET.LOSS_ALPHA
+    sigmoid_focal_loss = SigmoidDRLoss(
+        #cfg.MODEL.RETINANET.LOSS_GAMMA,
+        #cfg.MODEL.RETINANET.LOSS_ALPHA
     )
 
     loss_evaluator = RetinaNetLossComputation(
