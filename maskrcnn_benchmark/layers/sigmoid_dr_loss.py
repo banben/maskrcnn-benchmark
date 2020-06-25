@@ -20,6 +20,8 @@ class SigmoidDRLoss(nn.Module):
         self.tau = tau
 
     def forward(self, logits, targets):
+        import pdb
+        pdb.set_trace()
         num_classes = logits.shape[1]
         dtype = targets.dtype
         device = targets.device
